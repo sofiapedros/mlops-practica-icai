@@ -10,8 +10,8 @@ import mlflow.sklearn
 # Cargar el conjunto de datos
 df = pd.read_csv("data/iris_dataset.csv")
 print(df.columns)
-X = df[" feature_1"].values
-y = df[" feature_2"].values
+X = df[" feature_1"].reshape(-1, 1)
+y = df[" feature_2"]
 
 with mlflow.start_run():
     # Dividir los datos en conjuntos de entrenamiento y prueba
