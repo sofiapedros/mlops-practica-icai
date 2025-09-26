@@ -10,9 +10,9 @@ import mlflow.sklearn
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# Add dagshub
-import dagshub
-dagshub.init(repo_owner='sofiapedros', repo_name='mlops-practica-icai', mlflow=True)
+tracking_uri = os.environ.get("MLFLOW_TRACKING_URI")
+mlflow.set_tracking_uri(tracking_uri)
+
 
 # Cargar el conjunto de datos desde el archivo CSV
 try:
@@ -46,3 +46,16 @@ with mlflow.start_run():
     mlflow.log_metric("accuracy", accuracy)
     print(f"Modelo entrenado y precisión: {accuracy:.4f}")
     print("Experimento registrado con MLflow.")
+
+    # --- Sección de Reporte para CML ---
+    # 1. Generar la matriz de confusión
+    cm = confusion_matrix(y_test, y_pred)
+    plt.figure(figsize=(8, 6))
+    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues')
+    plt.title('Matriz de Confusión')
+    plt.xlabel('Predicciones')
+    plt.ylabel('Valores Reales')
+    plt.savefig('confusion_matrix.png')
+    print("Matriz de confusión guardada como 'confusion_matrix.png'")
+    # --- Fin de la sección de Reporte ---
+
