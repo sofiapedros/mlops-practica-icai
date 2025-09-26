@@ -57,5 +57,6 @@ with mlflow.start_run():
     plt.ylabel('Valores Reales')
     plt.savefig('confusion_matrix.png')
     print("Matriz de confusión guardada como 'confusion_matrix.png'")
+    mlflow.log_artifact("confusion_matrix.png")
     # --- Fin de la sección de Reporte ---
 
