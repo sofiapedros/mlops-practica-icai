@@ -65,5 +65,5 @@ jobs:
         docker build -t $IMAGE_NAME_WEB:$GITHUB_SHA .
         docker build -t $IMAGE_NAME_WEB:latest .
         docker push $IMAGE_NAME_WEB:$GITHUB_SHA
-        docker push $IMAGE_WEB:latest
+        docker push $IMAGE_NAME_WEB:latest
 
