@@ -1,8 +1,8 @@
 name: MLOps with CML
 on: [push, pull_request]
 env:
-  IMAGE_NAME_API = {{secrets.IMAGE_NAME_API}}
-  IMAGE_NAME_WEB = {{secrets.IMAGE_NAME_WEB}}
+  IMAGE_NAME_API: ${{secrets.IMAGE_NAME_API}}
+  IMAGE_NAME_WEB: ${{secrets.IMAGE_NAME_WEB}}
 jobs:
   train-and-report:
     runs-on: ubuntu-latest
