@@ -1,5 +1,8 @@
 name: MLOps with CML
 on: [push, pull_request]
+env:
+  IMAGE_NAME_API = {{secrets.IMAGE_NAME_API}}
+  IMAGE_NAME_WEB = {{secrets.IMAGE_NAME_WEB}}
 jobs:
   train-and-report:
     runs-on: ubuntu-latest
@@ -46,3 +49,21 @@ jobs:
         MLFLOW_TRACKING_URI: ${{ secrets.MLFLOW_TRACKING_URI }}
       run: |
         dvc repro
+
+    - name: Login docker
+      uses: docker/login-action@v3
+      with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Build and push docker images
+      run: |
+        docker build -t $IMAGE_NAME_API:$GITHUB_SHA .
+        docker build -t $IMAGE_NAME_API:latest .
+        docker push $IMAGE_NAME_API:$GITHUB_SHA
+        docker push $IMAGE_NAME_API:latest
+        docker build -t $IMAGE_NAME_WEB:$GITHUB_SHA .
+        docker build -t $IMAGE_NAME_WEB:latest .
+        docker push $IMAGE_NAME_WEB:$GITHUB_SHA
+        docker push $IMAGE_WEB:latest
+
