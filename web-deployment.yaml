@@ -14,11 +14,11 @@ spec:
       labels:
         app: mlops-web
     spec:
-    containers:
-      - name: mlops-web
-        image: gcr.io/icai2/mlops-web:latest # <--- RUTA DE IMAGEN
-        ports:
-        - containerPort: 8501
-        env:
-        - name: API_URL
-        value: http://mlops-api-service:5000/predict
+      containers:
+        - name: mlops-web
+          image: gcr.io/icai2/mlops-web:latest # <--- RUTA DE IMAGEN
+          ports:
+          - containerPort: 8501
+          env:
+          - name: API_URL
+          value: http://mlops-api-service:5000/predict
