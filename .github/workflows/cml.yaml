@@ -47,7 +47,6 @@ jobs:
         MLFLOW_TRACKING_URI: ${{ secrets.MLFLOW_TRACKING_URI }}
       run: |
         dvc repro
-
   deploy-to-gke:
     needs: train-and-report
     runs-on: ubuntu-latest
