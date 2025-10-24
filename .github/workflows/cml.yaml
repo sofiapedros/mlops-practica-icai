@@ -48,22 +48,6 @@ jobs:
       run: |
         dvc repro
 
-    - name: Login docker
-      uses: docker/login-action@v3
-      with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-    - name: Build and push API image (latest)
-      run: |
-        docker build -t ${{ secrets.IMAGE_NAME_API }}:latest .
-        docker push ${{ secrets.IMAGE_NAME_API }}:latest
-
-    - name: Build and push WEB image (latest)
-      run: |
-        docker build -t ${{ secrets.IMAGE_NAME_WEB }}:latest .
-        docker push ${{ secrets.IMAGE_NAME_WEB }}:latest
-
   deploy-to-gke:
     needs: train-and-report
     runs-on: ubuntu-latest
