@@ -85,12 +85,6 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip
           pip install -r requirements.txt
-      - name: Configure Docker to use GCR
-        run: gcloud auth configure-docker
-      - name: Build and Push Docker Image
-        run: |
-          docker build -t gcr.io/${{ vars.GCP_PROJECT_ID }}/mlops-api:latest .
-          docker push gcr.io/${{ vars.GCP_PROJECT_ID }}/mlops-api:latest
 
       - name:  Auth docker
         run: gcloud auth configure-docker
