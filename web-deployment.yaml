@@ -21,4 +21,4 @@ spec:
           - containerPort: 8501
           env:
           - name: API_URL
-          value: http://mlops-api-service:5000/predict
+            value: http://mlops-api-service:5000/predict
