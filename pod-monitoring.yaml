@@ -6,7 +6,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: mlops-icai
+      app: mlops-api
   endpoints:
     - port: metrics
       path: /metrics
