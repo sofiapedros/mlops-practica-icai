@@ -18,4 +18,5 @@ spec:
         - name: mlops-api
           image: gcr.io/icai202/mlops-api:latest
           ports:
-          - containerPort: 5000
+          - name: metrics
+            containerPort: 5000
